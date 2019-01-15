@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-site-2019",
+  "version": "1.0.0",
+  "description": "portfolio-site-2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kalcif3r/portfolio-site-2019.git"
+  },
+  "author": "Ikhwan Ibrahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kalcif3r/portfolio-site-2019/issues"
+  },
+  "homepage": "https://github.com/Kalcif3r/portfolio-site-2019#readme"
+}
