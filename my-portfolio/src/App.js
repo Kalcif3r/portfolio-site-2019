@@ -26,8 +26,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentPage: 0,
-      nextPage: 0,
+      currentPage: 1,
+      nextPage: 2,
       scrollDirection: +1,
       animating: true,
       componentState: [false, false, false, false, false, false]
@@ -41,7 +41,7 @@ class App extends Component {
     })
     setTimeout(() => {
       this.setState({
-        componentState: [true, false, false, false, false, false]
+        componentState: [false, false, true, false, false, false]
       })
     }, 200)
   }
@@ -165,6 +165,7 @@ class App extends Component {
             </CSSTransition>
           )
         })}
+
         <Footer />
       </div>
     )
