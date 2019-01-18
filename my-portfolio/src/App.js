@@ -41,7 +41,7 @@ class App extends Component {
     })
     setTimeout(() => {
       this.setState({
-        componentState: [false, false, true, false, false, false]
+        componentState: [false, false, false, true, false, false]
       })
     }, 200)
   }
