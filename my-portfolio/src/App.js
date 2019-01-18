@@ -5,6 +5,10 @@ import { CSSTransition } from 'react-transition-group'
 
 import Intro from './components/Intro'
 import Born from './components/Born'
+import Gaming from './components/Gaming'
+import Coding from './components/Coding'
+import Portfolio from './components/Portfolio'
+import Contact from './components/Contact'
 
 /*
 
@@ -36,7 +40,7 @@ class App extends Component {
     })
     setTimeout(() => {
       this.setState({
-        componentState: [true, false]
+        componentState: [true, false, false, false, false, false]
       })
     }, 200)
   }
@@ -134,34 +138,38 @@ class App extends Component {
   }
 
   render() {
-    const showIntro = this.state.componentState[0]
-    const showBorn = this.state.componentState[1]
+    let intro = <Intro />
+    let born = <Born />
+    let gaming = <Gaming />
+    let coding = <Coding />
+    let portfolio = <Portfolio />
+    let contact = <Contact />
+    const components = [intro, born, gaming, coding, portfolio, contact]
+
     return (
       <div className="App">
-        <CSSTransition
-          mountOnEnter={true}
-          appear={true}
-          in={showIntro}
-          timeout={300}
-          classNames="intro"
-          unmountOnExit
-          onEntered={this.toggleAnimating}
-          onExited={this.triggerNextTransition}
-        >
-          <Intro />
-        </CSSTransition>
-        <CSSTransition
-          mountOnEnter={true}
-          appear={true}
-          in={showBorn}
-          timeout={300}
-          classNames="intro"
-          unmountOnExit
-          onEntered={this.toggleAnimating}
-          onExited={this.triggerNextTransition}
-        >
-          <Born />
-        </CSSTransition>
+        {components.map((component, index) => {
+          console.log('component', component)
+          console.log('index', index)
+          console.log(
+            'this.state.componentState[index]',
+            this.state.componentState[index]
+          )
+          return (
+            <CSSTransition
+              mountOnEnter={true}
+              appear={true}
+              in={this.state.componentState[index]}
+              timeout={300}
+              classNames="intro"
+              unmountOnExit
+              onEntered={this.toggleAnimating}
+              onExited={this.triggerNextTransition}
+            >
+              {component}
+            </CSSTransition>
+          )
+        })}
       </div>
     )
   }
