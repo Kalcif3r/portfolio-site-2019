@@ -9,6 +9,7 @@ import Gaming from './components/Gaming'
 import Coding from './components/Coding'
 import Portfolio from './components/Portfolio'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 /*
 
@@ -149,12 +150,6 @@ class App extends Component {
     return (
       <div className="App">
         {components.map((component, index) => {
-          console.log('component', component)
-          console.log('index', index)
-          console.log(
-            'this.state.componentState[index]',
-            this.state.componentState[index]
-          )
           return (
             <CSSTransition
               mountOnEnter={true}
@@ -170,6 +165,7 @@ class App extends Component {
             </CSSTransition>
           )
         })}
+        <Footer />
       </div>
     )
   }
