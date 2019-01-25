@@ -23,25 +23,24 @@ import Footer from './components/Footer'
 */
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentPage: 0,
-      nextPage: 0,
-      scrollDirection: +1,
-      animating: true,
-      componentState: [false, false, false, false, false, false]
-    }
+  state = {
+    currentPage: 0,
+    nextPage: 0,
+    scrollDirection: +1,
+    animating: true,
+    componentState: [false, false, false, false, false, false],
+    lastY: 0
   }
 
   componentDidMount() {
+    window.addEventListener('touchmove', this.handleOnScroll)
     window.addEventListener('mousewheel', this.handleOnScroll)
     window.addEventListener('scroll', e => {
       e.preventDefault()
     })
     setTimeout(() => {
       this.setState({
-        componentState: [false, false, false, false, true, false]
+        componentState: [true, false, false, false, false, false]
       })
     }, 200)
   }
@@ -51,13 +50,9 @@ class App extends Component {
   }
 
   toggleAnimating = () => {
-    let { animating } = this.state
-    this.setState(
-      {
-        animating: !animating
-      },
-      console.log('animation toggled to :', this.state.animating)
-    )
+    this.setState(prevState => {
+      return { animating: !prevState.animating }
+    }, console.log('animation toggled to :', this.state.animating))
   }
 
   // first render happens through on componentDidMount()
@@ -71,22 +66,41 @@ class App extends Component {
   // on nextPage entering, set nextPage page as currentPage
 
   handleOnScroll = e => {
+    let { lastY } = this.state
     var { animating, currentPage } = this.state
     var scrollDirection = Math.max(
       -1,
       Math.min(1, e.wheelscrollDirection || e.wheelDelta)
     )
+    var currentY = e.touches[0].clientY
+    if (currentY > lastY) {
+      scrollDirection = -1
+      console.log('scrolldow')
+    } else if (currentY < lastY) {
+      scrollDirection = 1
+      console.log('scrolldup')
+      // moved up
+    }
+    this.setState({ lastY: currentY })
     // inverse the direction because:
     // I need it index to +1 on scroll down
     scrollDirection *= -1
     console.log(scrollDirection, 'scrolldirection')
-    if (!animating && currentPage < 5 && scrollDirection > 0) {
+    if (
+      !animating &&
+      currentPage < 5 &&
+      (scrollDirection > 0 || currentY > lastY)
+    ) {
       console.log('scrolled Down')
       this.toggleAnimating()
       this.updateScrollDirection(scrollDirection)
       this.updateNextPage(scrollDirection)
       this.triggerTransition(currentPage)
-    } else if (!animating && currentPage >= 1 && scrollDirection < 0) {
+    } else if (
+      !animating &&
+      currentPage >= 1 &&
+      (scrollDirection < 0 || currentY < lastY)
+    ) {
       console.log('scrolled Up')
       this.toggleAnimating()
       this.updateScrollDirection(scrollDirection)

@@ -5,10 +5,18 @@
   justify-items: center;
   align-items: center;
   .h1 {
+    display: flex;
     position: relative;
     top: -4%;
+    #life,
+    #as,
+    #lived,
+    #by {
+      opacity: 0;
+    }
   }
   .h2 {
+    opacity: 0;
     position: relative;
     top: -7.5%;
   }
