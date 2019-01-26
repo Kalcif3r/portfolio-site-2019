@@ -72,7 +72,7 @@ class App extends Component {
       -1,
       Math.min(1, e.wheelscrollDirection || e.wheelDelta)
     )
-    var currentY = e.touches[0].clientY
+    var currentY = e.touches && e.touches[0].clientY
     if (currentY > lastY) {
       scrollDirection = -1
       console.log('scrolldow')
