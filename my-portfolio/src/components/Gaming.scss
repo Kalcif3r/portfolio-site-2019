@@ -6,15 +6,24 @@
   justify-content: center;
   justify-items: center;
   align-items: center;
+  .controller {
+    opacity: 1;
+  }
   .text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    .text {
+      display: flex;
+    }
     .h1 {
+      margin-right: 5%;
+      opacity: 0;
       position: relative;
       top: 4%;
     }
     .h2 {
+      opacity: 0;
       line-height: 1em;
       // position: relative;
       // top: -7.5%;
