@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import './Born.scss'
 import { TimelineLite, TweenLite } from 'gsap/all'
 import isles from '../resources/isles.png'
+
 class Born extends Component {
   constructor(props) {
     super(props)
-
     this.timeline = new TimelineLite({ paused: true })
     this.myElements = []
   }
