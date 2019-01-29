@@ -10,6 +10,7 @@ import Coding from './components/Coding'
 import Portfolio from './components/Portfolio'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import cvEntries from './portfolioText.js'
 
 /*
 
@@ -19,17 +20,39 @@ import Footer from './components/Footer'
 3. transition in next page
 - Toggle animating off 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
 
 */
 
 class App extends Component {
-  state = {
-    currentPage: 0,
-    nextPage: 0,
-    scrollDirection: +1,
-    animating: true,
-    componentState: [false, false, false, false, false, false],
-    lastY: 0
+  constructor(props) {
+    super(props)
+    // Don't call this.setState() here!
+    this.state = {
+      currentPage: 4,
+      nextPage: 4,
+      scrollDirection: +1,
+      animating: true,
+      componentState: [false, false, false, false, false, false],
+      lastY: 0
+    }
+    let intro = <Intro />
+    let born = <Born />
+    let gaming = <Gaming />
+    let coding = <Coding />
+    let portfolio = cvEntries.map(cvEntry => {
+      let { country, year, position, bodyText } = cvEntry
+      return (
+        <Portfolio
+          country={country}
+          year={year}
+          position={position}
+          bodyText={bodyText}
+        />
+      )
+    })
+    let contact = <Contact />
+    this.components = [intro, born, gaming, coding, ...portfolio, contact]
   }
 
   componentDidMount() {
@@ -40,7 +63,17 @@ class App extends Component {
     })
     setTimeout(() => {
       this.setState({
-        componentState: [true, false, false, false, false, false]
+        componentState: [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
       })
     }, 200)
   }
@@ -88,7 +121,7 @@ class App extends Component {
     console.log(scrollDirection, 'scrolldirection')
     if (
       !animating &&
-      currentPage < 5 &&
+      currentPage < this.state.componentState.length - 1 &&
       (scrollDirection > 0 || currentY > lastY)
     ) {
       console.log('scrolled Down')
@@ -153,17 +186,9 @@ class App extends Component {
   }
 
   render() {
-    let intro = <Intro />
-    let born = <Born />
-    let gaming = <Gaming />
-    let coding = <Coding />
-    let portfolio = <Portfolio />
-    let contact = <Contact />
-    const components = [intro, born, gaming, coding, portfolio, contact]
-
     return (
       <div className="App">
-        {components.map((component, index) => {
+        {this.components.map((component, index) => {
           return (
             <CSSTransition
               mountOnEnter={true}
