@@ -44,6 +44,7 @@ class App extends Component {
       let { country, year, position, bodyText } = cvEntry
       return (
         <Portfolio
+          key={position}
           country={country}
           year={year}
           position={position}
@@ -88,16 +89,6 @@ class App extends Component {
     }, console.log('animation toggled to :', this.state.animating))
   }
 
-  // first render happens through on componentDidMount()
-  // on mouse scroll, check for which direction and whether we're above or below the page count ./
-  // update scrollDirection ./
-  // update nextPage ./
-
-  // trigger the currentPage fading out ./
-
-  // currentPage fading out completing triggers next Page fading in
-  // on nextPage entering, set nextPage page as currentPage
-
   handleOnScroll = e => {
     let { lastY } = this.state
     var { animating, currentPage } = this.state
@@ -112,11 +103,8 @@ class App extends Component {
     } else if (currentY < lastY) {
       scrollDirection = 1
       console.log('scrolldup')
-      // moved up
     }
     this.setState({ lastY: currentY })
-    // inverse the direction because:
-    // I need it index to +1 on scroll down
     scrollDirection *= -1
     console.log(scrollDirection, 'scrolldirection')
     if (
@@ -177,8 +165,6 @@ class App extends Component {
     this.setState(
       {
         componentState: componentState,
-        // i feel uncomfortable that its doing two things but,
-        // CURRENT PAGE is updated here.
         currentPage: nextPage
       },
       console.log('componentState state:', this.state)
@@ -191,6 +177,7 @@ class App extends Component {
         {this.components.map((component, index) => {
           return (
             <CSSTransition
+              key={index}
               mountOnEnter={true}
               appear={true}
               in={this.state.componentState[index]}
