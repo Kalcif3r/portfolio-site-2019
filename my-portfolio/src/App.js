@@ -20,8 +20,6 @@ import cvEntries from './portfolioText.js'
 3. transition in next page
 - Toggle animating off 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
-
 */
 
 class App extends Component {
@@ -41,14 +39,23 @@ class App extends Component {
     let gaming = <Gaming />
     let coding = <Coding />
     let portfolio = cvEntries.map(cvEntry => {
-      let { country, year, position, bodyText } = cvEntry
+      let {
+        country,
+        year,
+        position,
+        bodyText,
+        imageURL,
+        portfolioURL
+      } = cvEntry
       return (
         <Portfolio
           key={position}
           country={country}
           year={year}
           position={position}
+          imageURL={imageURL}
           bodyText={bodyText}
+          portfolioURL={portfolioURL}
         />
       )
     })
@@ -109,7 +116,7 @@ class App extends Component {
     console.log(scrollDirection, 'scrolldirection')
     if (
       !animating &&
-      currentPage < this.state.componentState.length - 1 &&
+      currentPage < this.components.length - 1 &&
       (scrollDirection > 0 || currentY > lastY)
     ) {
       console.log('scrolled Down')

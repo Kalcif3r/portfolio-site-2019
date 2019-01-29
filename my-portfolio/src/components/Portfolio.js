@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Portfolio.scss'
 import { TimelineLite, TweenLite } from 'gsap/all'
-import portfolio from '../resources/portfolio-1.jpg'
 
 class Portfolio extends Component {
   constructor(props) {
@@ -32,10 +31,18 @@ class Portfolio extends Component {
     //     opacity: 0,
     //     delay: 0.2
     //   })
-    // ])
+    //
 
     // .seek(5)
   }
+
+  // so we have an array of urls
+  // we want the first one to start loading,
+  // on the first one completing loading, we want to trigger the rest
+  // once loaded, the transitions begin.
+
+  // pause animation on hoverOn
+  // resume animation on hoverOff
 
   loadImages() {
     let image = new Image()
@@ -45,7 +52,7 @@ class Portfolio extends Component {
       })
       this.timeline.play()
     }
-    image.src = portfolio
+    image.src = this.props.imageURL
   }
 
   render() {
@@ -58,7 +65,14 @@ class Portfolio extends Component {
           <p className="main-text">{this.props.bodyText}</p>
         </div>
         <div className="image-section">
-          <img src={portfolio} alt="" />
+          <a
+            rel="noopener norefferer"
+            target="_blank"
+            href={this.props.portfolioURL}
+          >
+            {' '}
+            <img src={this.props.imageURL} alt="" />
+          </a>
         </div>
       </div>
     )
