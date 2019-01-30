@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TimelineLite } from 'gsap/all'
+import { TimelineLite } from 'gsap'
 import './Intro.scss'
 
 class Intro extends Component {

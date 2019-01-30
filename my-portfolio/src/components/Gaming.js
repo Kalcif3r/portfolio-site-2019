@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Gaming.scss'
-import { TimelineLite, TweenLite } from 'gsap/all'
+import { TimelineLite, TweenLite } from 'gsap'
 import controller from '../resources/controller.png'
 
 class Gaming extends Component {

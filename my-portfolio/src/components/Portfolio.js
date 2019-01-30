@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Portfolio.scss'
-import { TimelineLite, TweenLite } from 'gsap/all'
+import { TimelineLite, TweenLite } from 'gsap'
 
 class Portfolio extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Coding.scss'
-import { TimelineLite, TweenLite } from 'gsap/all'
+import { TimelineLite, TweenLite } from 'gsap'
 import degree from '../resources/degree.png'
 
 class Coding extends Component {

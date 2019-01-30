@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Contact.scss'
-import { TimelineLite, TweenLite } from 'gsap/all'
+import { TimelineLite, TweenLite } from 'gsap'
 
 class Contact extends Component {
   constructor(props) {
