@@ -1,39 +1,40 @@
 import React, { Component } from 'react'
 import './Portfolio.scss'
 import { TimelineLite, TweenLite } from 'gsap/all'
-
+import portfolio2 from '../resources/portfolio-1.png'
 class Portfolio extends Component {
   constructor(props) {
     super(props)
     this.timeline = new TimelineLite({ paused: true })
     this.myElements = []
-    this.images = []
     this.state = {
       isImgLoaded: false
     }
     this.title = 'Freelance Web Developer'
+    this.imgTimeline = new TimelineLite({
+      paused: true,
+      onComplete: function() {
+        this.restart()
+      }
+    })
   }
 
   componentDidMount() {
     this.loadImages()
-    // this.timeline.add([
-    //   TweenLite.from(this.myElements[0], 0.4, { x: 20, opacity: 0 }),
-    //   TweenLite.from(this.myElements[1], 0.5, { x: 20, opacity: 0 }),
-    //   TweenLite.from(this.myElements[2], 0.6, { x: 20, opacity: 0 }),
-    //   TweenLite.from(this.myElements[3], 0.7, { x: 20, opacity: 0 }),
-    //   TweenLite.from(this.myElements[4], 0.7, {
-    //     x: 10,
-    //     opacity: 0,
-    //     delay: 0.1
-    //   }),
-    //   TweenLite.from(this.myElements[5], 0.7, {
-    //     x: 10,
-    //     opacity: 0,
-    //     delay: 0.2
-    //   })
+    this.timeline.add([
+      TweenLite.from(this.myElements[0], 0.4, { x: 20, opacity: 0 }),
+      TweenLite.from(this.myElements[1], 0.5, { x: 20, opacity: 0 }),
+      TweenLite.from(this.myElements[2], 0.6, { x: 20, opacity: 0 }),
+      TweenLite.from(this.myElements[3], 0.7, { x: 20, opacity: 0 }),
+      TweenLite.from(this.myElements[4], 0.7, { x: 20, opacity: 0, delay: 0.1 })
+    ])
     //
 
     // .seek(5)
+
+    // show first image
+    // show next image
+    // show
   }
 
   // so we have an array of urls
@@ -59,10 +60,18 @@ class Portfolio extends Component {
     return (
       <div className="portfolio-container">
         <div className="text-section">
-          <div className="h1 year">{this.props.year}</div>
-          <div className="h2 country">{this.props.country}</div>
-          <p className="job-title">As a {this.props.position}</p>
-          <p className="main-text">{this.props.bodyText}</p>
+          <div ref={div => (this.myElements[0] = div)} className="h1 year">
+            {this.props.year}
+          </div>
+          <div ref={div => (this.myElements[1] = div)} className="h2 country">
+            {this.props.country}
+          </div>
+          <p ref={div => (this.myElements[2] = div)} className="job-title">
+            As a {this.props.position}
+          </p>
+          <p ref={div => (this.myElements[3] = div)} className="main-text">
+            {this.props.bodyText}
+          </p>
         </div>
         <div className="image-section">
           <a
@@ -70,8 +79,11 @@ class Portfolio extends Component {
             target="_blank"
             href={this.props.portfolioURL}
           >
-            {' '}
-            <img src={this.props.imageURL} alt="" />
+            <img
+              ref={div => (this.myElements[4] = div)}
+              src={this.props.imageURL}
+              alt=""
+            />
           </a>
         </div>
       </div>
