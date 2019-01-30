@@ -27,8 +27,8 @@ class App extends Component {
     super(props)
     // Don't call this.setState() here!
     this.state = {
-      currentPage: 4,
-      nextPage: 4,
+      currentPage: 0,
+      nextPage: 0,
       scrollDirection: +1,
       animating: true,
       componentState: [false, false, false, false, false, false],
@@ -72,14 +72,14 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         componentState: [
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
           true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
           false
         ]
       })
