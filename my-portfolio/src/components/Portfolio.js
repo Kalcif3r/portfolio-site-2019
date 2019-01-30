@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Portfolio.scss'
 import { TimelineLite, TweenLite } from 'gsap/all'
-import portfolio2 from '../resources/portfolio-1.png'
+
 class Portfolio extends Component {
   constructor(props) {
     super(props)
@@ -10,13 +10,6 @@ class Portfolio extends Component {
     this.state = {
       isImgLoaded: false
     }
-    this.title = 'Freelance Web Developer'
-    this.imgTimeline = new TimelineLite({
-      paused: true,
-      onComplete: function() {
-        this.restart()
-      }
-    })
   }
 
   componentDidMount() {

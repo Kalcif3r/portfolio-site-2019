@@ -1,0 +1,26 @@
+.contact-container {
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    .h1 {
+      position: relative;
+      margin-top: 50%;
+    }
+    .h2 {
+      position: relative;
+      right: 3%;
+      line-height: 0.85em;
+      letter-spacing: -0.04em;
+    }
+    .detail {
+      margin-top: 10%;
+    }
+    .link {
+      text-decoration: underline;
+      color: black;
+      &:visited {
+        color: black;
+      }
+    }
+  }
+}
