@@ -10,6 +10,7 @@ class Born extends Component {
     this.myElements = []
   }
   componentDidMount() {
+    this.loadImages()
     this.timeline
       .to(this.myElements[0], 0.6, { x: 10, opacity: 1 })
       .add([
@@ -17,8 +18,16 @@ class Born extends Component {
         TweenLite.to(this.myElements[2], 0.55, { x: -10, opacity: 1 })
       ])
       .to(this.myElements[3], 0.4, { x: -10, opacity: 1 })
-      // .seek(5)
-      .play()
+    // .seek(5)
+  }
+
+  loadImages() {
+    let image = new Image()
+    image.onload = () => {
+      console.log('playing timelien')
+      this.timeline.play()
+    }
+    image.src = isles
   }
 
   render() {

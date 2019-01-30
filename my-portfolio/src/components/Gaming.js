@@ -10,7 +10,18 @@ class Gaming extends Component {
     this.timeline = new TimelineLite({ paused: true })
     this.myElements = []
   }
+
+  loadImages() {
+    let image = new Image()
+    image.onload = () => {
+      console.log('playing timelien')
+      this.timeline.play()
+    }
+    image.src = controller
+  }
+
   componentDidMount() {
+    this.loadImages()
     this.timeline
       .from(this.myElements[0], 0.6, { y: -10, opacity: 0 })
       .add([
@@ -23,8 +34,7 @@ class Gaming extends Component {
       ])
       .to(this.myElements[3], 0.5, { y: -10, opacity: 1 })
 
-      // .seek(5)
-      .play()
+    // .seek(5)
   }
   render() {
     return (

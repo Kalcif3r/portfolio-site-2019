@@ -7,9 +7,6 @@ class Portfolio extends Component {
     super(props)
     this.timeline = new TimelineLite({ paused: true })
     this.myElements = []
-    this.state = {
-      isImgLoaded: false
-    }
   }
 
   componentDidMount() {
@@ -21,29 +18,11 @@ class Portfolio extends Component {
       TweenLite.from(this.myElements[3], 0.7, { x: 20, opacity: 0 }),
       TweenLite.from(this.myElements[4], 0.7, { x: 20, opacity: 0, delay: 0.1 })
     ])
-    //
-
-    // .seek(5)
-
-    // show first image
-    // show next image
-    // show
   }
-
-  // so we have an array of urls
-  // we want the first one to start loading,
-  // on the first one completing loading, we want to trigger the rest
-  // once loaded, the transitions begin.
-
-  // pause animation on hoverOn
-  // resume animation on hoverOff
 
   loadImages() {
     let image = new Image()
     image.onload = () => {
-      this.setState({
-        isImgLoaded: true
-      })
       this.timeline.play()
     }
     image.src = this.props.imageURL

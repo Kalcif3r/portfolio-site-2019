@@ -12,7 +12,17 @@ class Coding extends Component {
     this.codingLetters = ['C', 'o', 'd', 'i', 'n', 'g']
   }
 
+  loadImages() {
+    let image = new Image()
+    image.onload = () => {
+      console.log('playing timelien')
+      this.timeline.play()
+    }
+    image.src = degree
+  }
+
   componentDidMount() {
+    this.loadImages()
     this.timeline
       .to(this.myElements[0], 0.6, { x: -10, opacity: 1 })
       .to(this.myElements[1], 0.4, { x: 10, opacity: 1, delay: 0.2 })
@@ -94,7 +104,7 @@ class Coding extends Component {
         yoyo: true
       })
 
-      /*.add([
+    /*.add([
         TweenLite.to(this.codingElements[0], 0.1, { opacity: 1, delay: 0.2 }),
         TweenLite.to(this.codingElements[1], 0.1, { opacity: 1, delay: 0.4 }),
         TweenLite.to(this.codingElements[2], 0.1, { opacity: 1, delay: 0.6 }),
@@ -106,9 +116,8 @@ class Coding extends Component {
         //   ease: 'Power4.easeIn'
         // })
       ])*/
-      // .to(this.myElements[3], 0.4, { x: -10, opacity: 1 })
-      // .seek(5)
-      .play()
+    // .to(this.myElements[3], 0.4, { x: -10, opacity: 1 })
+    // .seek(5)
   }
 
   render() {
